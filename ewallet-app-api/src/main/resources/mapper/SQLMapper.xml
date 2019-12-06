@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hongtao.model">
+
+    <!--获取最新的app版本 case-->
+    <select id="getLatestVersionRequestParameter" parameterType="Integer" resultType="org.hongtao.model.appConfig.GetLatestVersionRequestParameter">
+        select * from latest_version_case where id = #{id}
+    </select>
+
+    <!--app登录 case-->
+    <select id="appUserLoginRequestParameter" parameterType="Integer" resultType="org.hongtao.model.appRegister.AppUserLoginRequestParameter">
+        select * from app_user_login_case where id = #{id}
+    </select>
+
+    <!--校验注册验证码 case-->
+    <select id="registerVerifyCodeRequestParameter" parameterType="Integer" resultType="org.hongtao.model.appRegister.RegisterVerifyCodeRequestParameter">
+        select * from is_registered_case where id = #{id}
+    </select>
+
+    <!--插入app用户密码 case-->
+    <insert id="insertTokenToPutUserPasswordCase" parameterType="org.hongtao.model.appRegister.PutUserPasswordRequestParameter">
+        <!-- 返回userinfo自增id -->
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT @@IDENTITY
+        </selectKey>
+        insert into put_user_password_case (encrypted_string, mobile,temp_token)
+        values
+        (#{encryptedString},#{mobile},#{tmpToken})
+    </insert>
+
+
+    <!--获取上传图片类型 case-->
+    <select id="uploadFileRequestParameter" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UploadFileRequestParameter">
+        select * from upload_file_case where id = #{id}
+    </select>
+
+    <!--aadhaar基本信息录入case-->
+    <select id="userAadhaarCardCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserAadhaarCardCase">
+        select * from user_aadhaar_card_case where id = #{id}
+    </select>
+
+
+    <!--pancard基本信息录入case-->
+    <select id="userPanCardCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserPanCardCase">
+        select * from user_pan_card_case where id = #{id}
+    </select>
+
+    <!--用户批量上传文件case-->
+    <select id="insertUserFilesCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.InsertUserFilesCase">
+        select * from user_info_files_case where id = #{id}
+    </select>
+
+    <!--用户关系case-->
+    <select id="insertUserContactCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.InsertUserContactCase">
+        select * from user_contact_case where id = #{id}
+    </select>
+
+    <!--用户信息case-->
+    <select id="userInfoCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserInfoCase">
+        select * from user_info_case where id = #{id}
+    </select>
+
+    <!--用户信息case-->
+    <select id="userBankCardCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserBankCardCase">
+        select * from user_bank_card_case where id = #{id}
+    </select>
+
+    <!--用户工作信息case-->
+    <select id="userWorkCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserWorkCase">
+        select * from user_work_case where id = #{id}
+    </select>
+
+    <!--用户地址信息case-->
+    <select id="userAddressCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserAddressCase">
+        select * from user_address_case where id = #{id}
+    </select>
+
+    <!--用户薪资信息case-->
+    <select id="userSalaryCase" parameterType="Integer" resultType="org.hongtao.model.appUserInfo.UserSalaryCase">
+        select * from user_salary_case where id = #{id}
+    </select>
+
+
+
+
+
+    <!--添加用户信息
+    <select id="addUser" parameterType="org.hongtao.model.AddUserCase" resultType="org.hongtao.model.User">
+        select * from user where
+        userName = #{userName}
+        and password=#{password}
+        and sex=#{sex}
+        and age=#{age}
+        and permission=#{permission}
+        and isDelete=#{isDelete}
+    </select>-->
+
+    <!--获取用户信息
+    <select id="getUserInfo" parameterType="org.hongtao.model.GetUserInfoCase" resultType="org.hongtao.model.User">
+        select * from user where id=#{userId};
+    </select>-->
+
+    <!--获取用户列表
+    <select id="getUserList" parameterType="org.hongtao.model.GetUserListCase" resultType="org.hongtao.model.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="null != userName and '' != userName">
+              AND userName=#{userName}
+            </if>
+            <if test="null != sex and '' != sex">
+                AND sex=#{sex}
+            </if>
+            <if test="null != age and '' != age">
+                AND age=#{age}
+            </if>
+        </trim>
+        ;
+    </select>-->
+
+    <!--获取更新之后的数据
+    <select id="getUpdateUserInfo" parameterType="org.hongtao.model.UpdateUserInfoCase" resultType="org.hongtao.model.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="null != userName and '' != userName">
+                AND userName=#{userName}
+            </if>
+            <if test="null != sex and '' != sex">
+                AND sex=#{sex}
+            </if>
+            <if test="null != age and '' != age">
+                AND age=#{age}
+            </if>
+            <if test="null != permission and '' != permission">
+                AND permission=#{permission}
+            </if>
+            <if test="null != isDelete and '' != isDelete">
+                AND isDelete=#{isDelete}
+            </if>
+        </trim>
+        and id = #(userId)
+    </select>-->
+</mapper>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--suite有以下属性：
+name:suite名称，测试报告中展现
+verbose: 在控制台中如何输出，该设置不影响测试报告
+allow-return-values:如果设置为false，被@Test注解且有return的方法被忽略执行
+annotations:如果为"javadoc", 则使用javadoc注解，否则使用jdk注解
+configfailurepolicy:字典：continue,skip，如果@Before*方法失败，TestNG是否应该继续执行套件中的其余测试，默认为skip
+data-provider-thread-count:并发执行data-provider的线程数，默认大小为10
+group-by-instances:默认情况下，依赖方法按类分组。例如，如果方法b()依赖于方法a()，并且您有几个包含这些方法的类实例(因为数据提供者的工厂)，
+那么调用顺序将为：signIn("us"),signIn("uk"),signOut("us"),,signOut("uk")。group-by-instances设置为true的话，调用顺序将为：signIn("us"),signOut("us"),signIn("uk"),signOut("uk")
+guice-stage:创建父注入器的stage
+junit:是否以junit模式运行
+object-factory:用于实现IObjectFactory的类，实例化测试对象
+parallel:是否多线程并发运行测试，默认为false，字典：classes,methods,instances,tests,true,false
+parent-module:用于创建所有guice注入器的父注入器的模块
+preserve-order:默认情况下，TestNG将按照在XML文件配置的顺序运行测试。如果希望以不可预知的顺序运行文件中列出的类和方法，可将preserve-order属性设置为false
+skipfailedinvocationcounts:是否跳过失败的调用
+thread-count:使用并行模式，要使用的线程池的大小。
+time-out:为具体执行单元设定一个超时时间，方法(parallel="methods")或测试(parallel="tests")
+-->
+<suite name="钱包管理系统测试套件">
+    <test name="钱包管理系统测试用例">
+        <classes>
+            <class name="org.hongtao.cases.appRegister.PutUserPasswordTest">
+                <methods>
+                    <include name="registerAndPutUserPassword"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.UploadFileTest">
+                <methods>
+                    <include name="uploadFaceImage"/>
+                    <include name="uploadAadhaarImage"/>
+                    <include name="uploadPancardImage"/>
+                    <include name="uploadBankStatementImage"/>
+                    <include name="uploadWorkCredentialImage"/>
+                    <include name="uploadSalarySlipsImage"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.UpdateUserInfoFaceUrlTest">
+                <methods>
+                    <include name="updateUserInfoFaceUrl"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.QueryCertificationStatusTest">
+                <methods>
+                    <include name="queryCertificationStatus"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.InsertUserPanCardTest">
+                <methods>
+                    <include name="insertUserPanCard"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.QueryCertificationStatusTest">
+                <methods>
+                    <include name="queryCertificationStatus"/>
+                </methods>
+            </class>
+
+
+            <class name="org.hongtao.cases.appUserInfo.InsertUserFilesTest">
+                <methods>
+                    <include name="insertUserFiles"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.GetUpdateUserInfoTest">
+                <methods>
+                    <include name="getUpdateUserInfo"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.UpdateUserInfoTest">
+                <methods>
+                    <include name="updateUserInfo"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.GetUpdateUserWorkTest">
+                <methods>
+                    <include name="getUpdateUserWork"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.UpdateUserWorkTest">
+                <methods>
+                    <include name="updateUserWork"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.GetUserContactTest">
+                <methods>
+                    <include name="getUserContact"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.InsertUserContactTest">
+                <methods>
+                    <include name="insertUserContact"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.GetUserBankCardTest">
+                <methods>
+                    <include name="getUserBankCard"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.UploadFileTest">
+                <methods>
+                    <include name="uploadBankcardImage"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.appUserInfo.InsertUserBankCardTest">
+                <methods>
+                    <include name="insertUserBankCard"/>
+                </methods>
+            </class>
+
+            <class name="org.hongtao.cases.submit.ApplySubmitTest">
+                <methods>
+                    <include name="applySubmit"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="org.hongtao.config.ExtentTestNGIReporterListener"/>
+    </listeners>
+</suite>
